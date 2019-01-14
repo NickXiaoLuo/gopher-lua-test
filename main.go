@@ -1,8 +1,13 @@
 package main
 
-import "fmt"
+import (
+  `github.com/yuin/gopher-lua`
+)
 
 func main(){
-  fmt.Println("Hello World")
-  return
+	L := lua.NewState()
+	defer L.Close()
+	if err := L.DoString(`print("Hello")`); err != nil {
+		panic(err)
+	}
 }
